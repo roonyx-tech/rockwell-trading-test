@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>
+    <ng-container *ngIf="isEdit">
+        Save trade
+    </ng-container>
+    <ng-container *ngIf="!isEdit">
+        Add trade
+    </ng-container>
+</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <div class="control">
+            <mat-form-field>
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="form" [rangePicker]="picker">
+                    <input matStartDate formControlName="entryDate" placeholder="Entry date" [min]="today">
+                    <input matEndDate formControlName="exitDate" placeholder="Exit date" [min]="today">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <mat-error *ngIf="form.controls.entryDate.hasError('matStartDateInvalid')">Invalid start date
+                </mat-error>
+                <mat-error *ngIf="form.controls.exitDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="control">
+            <mat-form-field>
+                <mat-label>Entry Price</mat-label>
+                <span matPrefix>$</span>
+                <input matInput formControlName="entryPrice" type="number">
+                <mat-error *ngIf="form.controls.entryPrice.hasError('min')">
+                    The price must be greater than zero
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="control">
+            <mat-form-field>
+                <mat-label>Exit Price</mat-label>
+                <span matPrefix>$</span>
+                <input matInput formControlName="exitPrice" type="number">
+                <mat-error *ngIf="form.controls.exitPrice.hasError('min')">
+                    The price must be greater than zero
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button [disabled]="form.invalid" color="primary" (click)="submit()">
+        <ng-container *ngIf="isEdit">
+            Save
+        </ng-container>
+        <ng-container *ngIf="!isEdit">
+            Add
+        </ng-container>
+    </button>
+</div>

@@ -1,0 +1,18 @@
+.dashboard {
+    @apply w-screen max-w-xl;
+    .actions {
+        @apply mx-auto mb-8 text-center;
+    }
+    .chart {
+        &-history {
+        }
+    }
+    .card {
+        @apply mb-8 text-center;
+    }
+    h {
+        &1 {
+            @apply text-4xl font-bold;
+        }
+    }
+}

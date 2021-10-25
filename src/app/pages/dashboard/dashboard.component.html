@@ -1,0 +1,24 @@
+<div class="dashboard">
+    <div class="actions">
+        <button (click)="openModalTrading()" class="action action-trade" mat-fab color="primary">
+            <mat-icon *ngIf="!hasTrade">add</mat-icon>
+            <mat-icon *ngIf="hasTrade">edit</mat-icon>
+        </button>
+    </div>
+    <ng-container *ngIf="hasTrade">
+        <div>
+            <mat-card class="card card-trade">
+                <mat-card-title>{{trade.entryDate | amDateFormat:'DD.MM.YYYY'}}&mdash;{{trade.exitDate |
+                    amDateFormat:'DD.MM.YYYY'}}
+                </mat-card-title>
+                <mat-card-content>
+                    <h1>${{profit}}</h1>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <canvas baseChart class="chart chart-history" [colors]="historyChartColors" [legend]="false"
+            [labels]="historyChartLabels" [options]="historyChartOpts" [datasets]="historyChartData"
+            chartType="line"></canvas>
+    </ng-container>
+    <ng-container *ngIf="history"></ng-container>
+</div>

@@ -1,0 +1,14 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+    @apply flex items-center justify-center bg-gray-100;
+    min-height: 100vh;
+}
+
+button {
+    svg {
+        display: inherit;
+    }
+}

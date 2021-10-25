@@ -1,0 +1,10 @@
+.control {
+    @apply mb-4;
+    .mat {
+        &-form {
+            &-field {
+                @apply w-full;
+            }
+        }
+    }
+}
